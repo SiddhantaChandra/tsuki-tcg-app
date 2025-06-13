@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { getRarityColor } from '../common/utils'
 
-export default function Card1({ src, title, price, rarity, condition }) {
+export default function CardFeatured({ src, title, price, rarity, condition, description, series }) {
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 h-full flex flex-col" style={{ boxShadow: '1px 0 0 0 #e5e7eb' }}>
+    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 h-full flex flex-col" style={{ boxShadow: '1px 0 0 0 #374151' }}>
       <div className="relative aspect-[3/4] w-full p-6">
         <Image 
           src={src} 
@@ -20,13 +20,13 @@ export default function Card1({ src, title, price, rarity, condition }) {
       </div>
       <div className="p-3 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="font-medium text-gray-900 text-sm truncate">{title}</h3>
-          <p className="text-gray-500 text-xs mb-2">Condition: {condition}</p>
+          <h3 className="font-medium text-white text-sm truncate">{title}</h3>
+          <p className="text-gray-400 text-xs mb-2">Condition: {condition}</p>
         </div>
         <div className="flex flex-col justify-between gap-2 mt-auto">
-          <span className="font-bold text-gray-900">${price}</span>
-          <button className="px-3 py-2 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors">
-            Add to Cart
+          <span className="font-bold text-red-400">${price}</span>
+          <button className="px-3 py-2 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-colors">
+            Acquire
           </button>
         </div>
       </div>

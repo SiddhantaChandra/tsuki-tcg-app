@@ -201,7 +201,7 @@ export default function HeroBanner() {
               >
                 Discover
                 <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent"> Legendary</span>
-                Trading Cards
+                {' '}Trading Cards
               </motion.h1>
               
               <motion.p 

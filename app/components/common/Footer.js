@@ -1,11 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-16 px-6">
+    <footer className="bg-gray-900 text-white pb-4 pt-8 px-6">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
@@ -56,12 +55,9 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-800 pt-8 text-center">
-          <p className="text-gray-400 mb-4">
+          <p className="text-gray-400">
             © 2024 Tsuki Cards. All rights reserved. • Authentic Cards • Secure Trading
           </p>
-          <Link href="/" className="text-purple-400 hover:text-purple-300 transition-colors">
-            ← Back to Mockup Selection
-          </Link>
         </div>
       </div>
     </footer>
