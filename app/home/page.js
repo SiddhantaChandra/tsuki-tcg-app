@@ -10,7 +10,7 @@ import Footer from '@/app/components/common/Footer'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 transition-colors duration-300">
       <Navbar />
       <HeroBanner />
       <RecentlyAddedSection />

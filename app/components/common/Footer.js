@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-gray-800 pt-8 text-center">
+        <div className="border-t border-gray-700 dark:border-neutral-700 pt-8 text-center">
           <p className="text-gray-400">
             © 2024 Tsuki Cards. All rights reserved. • Authentic Cards • Secure Trading
           </p>

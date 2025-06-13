@@ -54,7 +54,7 @@ export default function HeroBanner() {
   }
 
   return (
-    <section className="mt-16 container mx-auto rounded-xl relative bg-gradient-to-br from-purple-200 via-pink-50 to-orange-100 py-12 px-6 overflow-hidden">
+    <section className="mt-8 sm:mt-16 container mx-auto rounded-xl relative bg-gradient-to-br from-purple-200 via-pink-50 to-orange-100 dark:from-purple-900/40 dark:via-cyan-900/20 dark:to-amber-900/30 py-8 sm:py-12 px-4 sm:px-6 overflow-hidden transition-colors duration-300">
       {/* Background decorative shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
@@ -112,11 +112,11 @@ export default function HeroBanner() {
 
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-3 gap-8 items-center">
-          {/* Left Cards Fan */}
-          <div className="relative h-80">
+          {/* Left Cards Fan - Hidden on Mobile */}
+          <div className="relative h-80 hidden lg:block">
             {/* Far left card */}
             <motion.div 
-              className="flex justify-center items-center flex-col gap-2 absolute top-12 left-8 px-6 py-4 bg-white rounded-xl shadow-lg"
+              className="flex justify-center items-center flex-col gap-2 absolute top-12 left-8 px-6 py-4 bg-white dark:bg-neutral-800 rounded-xl shadow-lg dark:shadow-neutral-900/50 transition-colors duration-300"
               variants={cardVariants}
               initial="hidden"
               animate="visible"
@@ -136,7 +136,7 @@ export default function HeroBanner() {
             
             {/* Center left card */}
             <motion.div 
-              className="flex justify-center items-center flex-col gap-2 absolute top-8 left-40 px-6 py-4 bg-white rounded-xl shadow-lg"
+              className="flex justify-center items-center flex-col gap-2 absolute top-8 left-40 px-6 py-4 bg-white dark:bg-neutral-800 rounded-xl shadow-lg dark:shadow-neutral-900/50 transition-colors duration-300"
               variants={cardVariants}
               initial="hidden"
               animate="visible"
@@ -156,7 +156,7 @@ export default function HeroBanner() {
             
             {/* Right card */}
             <motion.div 
-              className="flex justify-center items-center flex-col gap-2 absolute top-12 -right-8 px-6 py-4 bg-white rounded-xl shadow-lg"
+              className="flex justify-center items-center flex-col gap-2 absolute top-12 -right-8 px-6 py-4 bg-white dark:bg-neutral-800 rounded-xl shadow-lg dark:shadow-neutral-900/50 transition-colors duration-300"
               variants={cardVariants}
               initial="hidden"
               animate="visible"
@@ -177,7 +177,7 @@ export default function HeroBanner() {
 
           {/* Center Text */}
           <motion.div 
-            className="space-y-6 text-center"
+            className="space-y-4 sm:space-y-6 text-center lg:col-span-1 col-span-full"
             variants={textVariants}
             initial="hidden"
             animate="visible"
@@ -194,7 +194,7 @@ export default function HeroBanner() {
               </motion.div>
               
               <motion.h1 
-                className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight"
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight transition-colors duration-300 px-4 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
@@ -205,22 +205,22 @@ export default function HeroBanner() {
               </motion.h1>
               
               <motion.p 
-                className="text-base text-gray-600 leading-relaxed max-w-md mx-auto"
+                className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-md mx-auto transition-colors duration-300 px-4 sm:px-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
               >
-                From Team Rocket's dark power to One Piece adventures, explore our premium collection 
+                From Team Rocket&apos;s dark power to One Piece adventures, explore our premium collection 
                 of authentic trading cards.
               </motion.p>
             </div>
           </motion.div>
           
-          {/* Right Cards Fan */}
-          <div className="relative h-80">
+          {/* Right Cards Fan - Hidden on Mobile */}
+          <div className="relative h-80 hidden lg:block">
             {/* Far left card */}
             <motion.div 
-              className="flex justify-center items-center flex-col gap-2 absolute top-12 -left-4 px-6 py-4 bg-white rounded-xl shadow-lg"
+              className="flex justify-center items-center flex-col gap-2 absolute top-12 -left-4 px-6 py-4 bg-white dark:bg-neutral-800 rounded-xl shadow-lg dark:shadow-neutral-900/50 transition-colors duration-300"
               variants={cardVariants}
               initial="hidden"
               animate="visible"
@@ -240,7 +240,7 @@ export default function HeroBanner() {
             
             {/* Center card */}
             <motion.div 
-              className="flex justify-center items-center flex-col gap-2 absolute top-8 left-24 px-6 py-4 bg-white rounded-xl shadow-lg"
+              className="flex justify-center items-center flex-col gap-2 absolute top-8 left-24 px-6 py-4 bg-white dark:bg-neutral-800 rounded-xl shadow-lg dark:shadow-neutral-900/50 transition-colors duration-300"
               variants={cardVariants}
               initial="hidden"
               animate="visible"
@@ -260,7 +260,7 @@ export default function HeroBanner() {
             
             {/* Far right card */}
             <motion.div 
-              className="flex justify-center items-center flex-col gap-2 absolute top-12 right-12 px-6 py-4 bg-white rounded-xl shadow-lg 2xl:right-12"
+              className="flex justify-center items-center flex-col gap-2 absolute top-12 right-12 px-6 py-4 bg-white dark:bg-neutral-800 rounded-xl shadow-lg dark:shadow-neutral-900/50 2xl:right-12 transition-colors duration-300"
               variants={cardVariants}
               initial="hidden"
               animate="visible"

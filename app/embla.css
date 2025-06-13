@@ -1,0 +1,40 @@
+/* Embla Carousel Styles */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(1rem * -1);
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 auto;
+  min-width: 0;
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .embla__container {
+    margin-left: calc(1.5rem * -1);
+  }
+  
+  .embla__slide {
+    padding-left: 1.5rem;
+  }
+}
+
+/* Smooth scrolling */
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__viewport.is-draggable {
+  cursor: grab;
+}
+
+.embla__viewport.is-dragging {
+  cursor: grabbing;
+} 

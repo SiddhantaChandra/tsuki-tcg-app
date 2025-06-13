@@ -3,14 +3,14 @@ import { getRarityColor } from '../common/utils'
 
 export default function Card1({ src, title, price, rarity, condition }) {
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 h-full flex flex-col" style={{ boxShadow: '1px 0 0 0 #e5e7eb' }}>
-      <div className="relative aspect-[3/4] w-full p-6">
-        <Image 
-          src={src} 
-          alt={title} 
-          width={300} 
-          height={400}
-          className="w-full h-full object-fill group-hover:scale-105 transition-transform rounded-md"
+    <div className="flex-shrink-0 w-[150px] sm:w-32 md:w-52 lg:w-52 2xl:w-48 h-full flex flex-col transition-colors duration-300 shadow-md dark:shadow-neutral-900/50 rounded-lg overflow-hidden">
+      <div className="relative aspect-[3/4] w-full p-4 sm:p-6 bg-white dark:bg-neutral-800 transition-colors duration-300">
+        <Image
+          src={src}
+          alt={title}
+          width={150}
+          height={200}
+          className="w-full h-full object-fill group-hover:scale-105 transition-transform rounded-sm lg:rounded-md"
         />
         <div className="absolute bottom-2 right-2">
           <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRarityColor(rarity)} bg-black/50 backdrop-blur-sm`}>
@@ -18,13 +18,13 @@ export default function Card1({ src, title, price, rarity, condition }) {
           </span>
         </div>
       </div>
-      <div className="p-3 flex-1 flex flex-col justify-between">
+      <div className="p-3 flex-1 flex flex-col justify-between bg-white dark:bg-neutral-800 transition-colors duration-300">
         <div>
-          <h3 className="font-medium text-gray-900 text-sm truncate">{title}</h3>
-          <p className="text-gray-500 text-xs mb-2">Condition: {condition}</p>
+          <h3 className="font-medium text-gray-900 dark:text-white text-sm truncate transition-colors duration-300">{title}</h3>
+          <p className="text-gray-500 dark:text-gray-400 text-xs mb-2 transition-colors duration-300">Condition: {condition}</p>
         </div>
         <div className="flex flex-col justify-between gap-2 mt-auto">
-          <span className="font-bold text-gray-900">${price}</span>
+          <span className="font-bold text-gray-900 dark:text-white transition-colors duration-300">${price}</span>
           <button className="px-3 py-2 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors">
             Add to Cart
           </button>
