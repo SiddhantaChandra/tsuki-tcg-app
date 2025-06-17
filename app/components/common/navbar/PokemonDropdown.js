@@ -12,7 +12,7 @@ export default function PokemonDropdown({
 }) {
   return (
     <div 
-      className="absolute top-full left-1/2 -translate-x-1/2 mt-7 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg min-w-[750px] h-80 z-50 overflow-hidden"
+      className="absolute top-full left-1/2 -translate-x-1/2 mt-5 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg min-w-[750px] h-80 z-50 overflow-hidden"
       onMouseLeave={handleSetLeave}
     >
       <div className="grid grid-cols-12 gap-0 h-80">

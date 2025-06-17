@@ -6,7 +6,7 @@ export default function SlabsDropdown({
   setActiveDropdown
 }) {
   return (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-7 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg min-w-[320px] sm:min-w-[750px] w-[95vw] sm:w-auto max-w-[750px] h-80 z-50 overflow-hidden">
+    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-5 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-lg shadow-lg min-w-[320px] sm:min-w-[750px] w-[95vw] sm:w-auto max-w-[750px] h-80 z-50 overflow-hidden">
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-0 h-80">
         {/* Image Column - Fixed dimensions, hidden on mobile */}
         <div className="hidden sm:block sm:col-span-4 relative h-80">

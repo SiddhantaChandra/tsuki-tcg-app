@@ -22,6 +22,7 @@ export default function Navbar() {
   const [subsetsBySetId, setSubsetsBySetId] = useState({})
   const [subsetsLoaded, setSubsetsLoaded] = useState(false)
   const [companiesLoaded, setCompaniesLoaded] = useState(false)
+  const [closeTimeout, setCloseTimeout] = useState(null)
 
   // Fetch sets data on component mount
   useEffect(() => {
@@ -95,11 +96,30 @@ export default function Navbar() {
 
   // Enhanced dropdown handling with hover
   const handleNavHover = (dropdown) => {
+    // Clear any existing close timeout
+    if (closeTimeout) {
+      clearTimeout(closeTimeout)
+      setCloseTimeout(null)
+    }
     setActiveDropdown(dropdown)
+  }
+
+  const handleNavLeave = () => {
+    // Add a small delay to allow users to move from nav button to dropdown
+    const timeout = setTimeout(() => {
+      setActiveDropdown(null)
+      setCloseTimeout(null)
+    }, 200)
+    setCloseTimeout(timeout)
   }
 
   const handleNavClick = (dropdown, event) => {
     event.preventDefault()
+    // Clear any existing close timeout
+    if (closeTimeout) {
+      clearTimeout(closeTimeout)
+      setCloseTimeout(null)
+    }
     // If already open, keep it open; if closed, open it
     if (activeDropdown !== dropdown) {
       setActiveDropdown(dropdown)
@@ -108,9 +128,11 @@ export default function Navbar() {
 
   const handleDropdownLeave = () => {
     // Add a small delay to prevent accidental closing when moving between nav and dropdown
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setActiveDropdown(null)
+      setCloseTimeout(null)
     }, 50)
+    setCloseTimeout(timeout)
   }
 
   const handleSetHover = (set) => {
@@ -140,6 +162,7 @@ export default function Navbar() {
               <button
                 onClick={(e) => handleNavClick('pokemon', e)}
                 onMouseEnter={() => handleNavHover('pokemon')}
+                onMouseLeave={handleNavLeave}
                 className={`flex items-center space-x-1 font-medium transition-all duration-200 ${
                   activeDropdown === 'pokemon' 
                     ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-3 py-2 rounded-lg' 
@@ -150,7 +173,10 @@ export default function Navbar() {
                 <NavArrowDown className={`w-4 h-4 transition-transform ${activeDropdown === 'pokemon' ? 'rotate-180' : ''}`} />
               </button>
               {activeDropdown === 'pokemon' && (
-                <div onMouseLeave={handleDropdownLeave}>
+                <div 
+                  onMouseEnter={() => handleNavHover('pokemon')}
+                  onMouseLeave={handleDropdownLeave}
+                >
                   <PokemonDropdown
                     sets={pokemonSets}
                     isLoading={isLoading}
@@ -170,6 +196,7 @@ export default function Navbar() {
               <button
                 onClick={(e) => handleNavClick('onepiece', e)}
                 onMouseEnter={() => handleNavHover('onepiece')}
+                onMouseLeave={handleNavLeave}
                 className={`flex items-center space-x-1 font-medium transition-all duration-200 ${
                   activeDropdown === 'onepiece' 
                     ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-3 py-2 rounded-lg' 
@@ -180,7 +207,10 @@ export default function Navbar() {
                 <NavArrowDown className={`w-4 h-4 transition-transform ${activeDropdown === 'onepiece' ? 'rotate-180' : ''}`} />
               </button>
               {activeDropdown === 'onepiece' && (
-                <div onMouseLeave={handleDropdownLeave}>
+                <div 
+                  onMouseEnter={() => handleNavHover('onepiece')}
+                  onMouseLeave={handleDropdownLeave}
+                >
                   <OnePieceDropdown
                     sets={onePieceSets}
                     isLoading={isLoading}
@@ -200,6 +230,7 @@ export default function Navbar() {
               <button
                 onClick={(e) => handleNavClick('slabs', e)}
                 onMouseEnter={() => handleNavHover('slabs')}
+                onMouseLeave={handleNavLeave}
                 className={`flex items-center space-x-1 font-medium transition-all duration-200 ${
                   activeDropdown === 'slabs' 
                     ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-3 py-2 rounded-lg' 
@@ -210,7 +241,10 @@ export default function Navbar() {
                 <NavArrowDown className={`w-4 h-4 transition-transform ${activeDropdown === 'slabs' ? 'rotate-180' : ''}`} />
               </button>
               {activeDropdown === 'slabs' && (
-                <div onMouseLeave={handleDropdownLeave}>
+                <div 
+                  onMouseEnter={() => handleNavHover('slabs')}
+                  onMouseLeave={handleDropdownLeave}
+                >
                   <SlabsDropdown
                     gradeCompanies={gradeCompanies}
                     companiesLoaded={companiesLoaded}
