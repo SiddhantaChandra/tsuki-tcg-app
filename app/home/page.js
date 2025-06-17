@@ -1,7 +1,7 @@
 'use client'
 
 import HeroBanner from '@/app/components/home/hero/HeroBanner'
-import Navbar from '@/app/components/common/Navbar'
+import Navbar from '@/app/components/common/navbar/Navbar'
 import RecentlyAddedSection from '@/app/components/home/sections/RecentlyAddedSection'
 import FeaturedSection from '@/app/components/home/sections/FeaturedSection'
 import OnePieceSection from '@/app/components/home/sections/OnePieceSection'
