@@ -93,6 +93,26 @@ export default function Navbar() {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown)
   }
 
+  // Enhanced dropdown handling with hover
+  const handleNavHover = (dropdown) => {
+    setActiveDropdown(dropdown)
+  }
+
+  const handleNavClick = (dropdown, event) => {
+    event.preventDefault()
+    // If already open, keep it open; if closed, open it
+    if (activeDropdown !== dropdown) {
+      setActiveDropdown(dropdown)
+    }
+  }
+
+  const handleDropdownLeave = () => {
+    // Add a small delay to prevent accidental closing when moving between nav and dropdown
+    setTimeout(() => {
+      setActiveDropdown(null)
+    }, 50)
+  }
+
   const handleSetHover = (set) => {
     console.log('Hovering over set:', set) // Debug log
     console.log('Available subsets for this set:', subsetsBySetId[set.id] || []) // Debug log
@@ -108,78 +128,99 @@ export default function Navbar() {
 
   return (
     <header className="bg-white dark:bg-neutral-900 shadow-sm dark:shadow-neutral-800 sticky top-0 z-50 transition-colors duration-300">
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-6 relative z-50">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo Section */}
           <NavbarLogo />
           
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8 relative z-50">
             {/* Pokemon Dropdown */}
             <div className="relative">
               <button
-                onClick={() => handleDropdownToggle('pokemon')}
-                className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium"
+                onClick={(e) => handleNavClick('pokemon', e)}
+                onMouseEnter={() => handleNavHover('pokemon')}
+                className={`flex items-center space-x-1 font-medium transition-all duration-200 ${
+                  activeDropdown === 'pokemon' 
+                    ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-3 py-2 rounded-lg' 
+                    : 'text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 px-3 py-2 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-lg'
+                }`}
               >
                 <span>Pokemon</span>
                 <NavArrowDown className={`w-4 h-4 transition-transform ${activeDropdown === 'pokemon' ? 'rotate-180' : ''}`} />
               </button>
               {activeDropdown === 'pokemon' && (
-                <PokemonDropdown
-                  sets={pokemonSets}
-                  isLoading={isLoading}
-                  hoveredSet={hoveredSet}
-                  subsetsBySetId={subsetsBySetId}
-                  subsetsLoaded={subsetsLoaded}
-                  handleSetHover={handleSetHover}
-                  handleSetLeave={handleSetLeave}
-                  setActiveDropdown={setActiveDropdown}
-                />
+                <div onMouseLeave={handleDropdownLeave}>
+                  <PokemonDropdown
+                    sets={pokemonSets}
+                    isLoading={isLoading}
+                    hoveredSet={hoveredSet}
+                    subsetsBySetId={subsetsBySetId}
+                    subsetsLoaded={subsetsLoaded}
+                    handleSetHover={handleSetHover}
+                    handleSetLeave={handleSetLeave}
+                    setActiveDropdown={setActiveDropdown}
+                  />
+                </div>
               )}
             </div>
 
             {/* One Piece Dropdown */}
             <div className="relative">
               <button
-                onClick={() => handleDropdownToggle('onepiece')}
-                className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium"
+                onClick={(e) => handleNavClick('onepiece', e)}
+                onMouseEnter={() => handleNavHover('onepiece')}
+                className={`flex items-center space-x-1 font-medium transition-all duration-200 ${
+                  activeDropdown === 'onepiece' 
+                    ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-3 py-2 rounded-lg' 
+                    : 'text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 px-3 py-2 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-lg'
+                }`}
               >
                 <span>One Piece</span>
                 <NavArrowDown className={`w-4 h-4 transition-transform ${activeDropdown === 'onepiece' ? 'rotate-180' : ''}`} />
               </button>
               {activeDropdown === 'onepiece' && (
-                <OnePieceDropdown
-                  sets={onePieceSets}
-                  isLoading={isLoading}
-                  hoveredSet={hoveredSet}
-                  subsetsBySetId={subsetsBySetId}
-                  subsetsLoaded={subsetsLoaded}
-                  handleSetHover={handleSetHover}
-                  handleSetLeave={handleSetLeave}
-                  setActiveDropdown={setActiveDropdown}
-                />
+                <div onMouseLeave={handleDropdownLeave}>
+                  <OnePieceDropdown
+                    sets={onePieceSets}
+                    isLoading={isLoading}
+                    hoveredSet={hoveredSet}
+                    subsetsBySetId={subsetsBySetId}
+                    subsetsLoaded={subsetsLoaded}
+                    handleSetHover={handleSetHover}
+                    handleSetLeave={handleSetLeave}
+                    setActiveDropdown={setActiveDropdown}
+                  />
+                </div>
               )}
             </div>
 
             {/* Slabs Dropdown */}
             <div className="relative">
               <button
-                onClick={() => handleDropdownToggle('slabs')}
-                className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium"
+                onClick={(e) => handleNavClick('slabs', e)}
+                onMouseEnter={() => handleNavHover('slabs')}
+                className={`flex items-center space-x-1 font-medium transition-all duration-200 ${
+                  activeDropdown === 'slabs' 
+                    ? 'text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 px-3 py-2 rounded-lg' 
+                    : 'text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 px-3 py-2 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-lg'
+                }`}
               >
                 <span>Slabs</span>
                 <NavArrowDown className={`w-4 h-4 transition-transform ${activeDropdown === 'slabs' ? 'rotate-180' : ''}`} />
               </button>
               {activeDropdown === 'slabs' && (
-                <SlabsDropdown
-                  gradeCompanies={gradeCompanies}
-                  companiesLoaded={companiesLoaded}
-                  setActiveDropdown={setActiveDropdown}
-                />
+                <div onMouseLeave={handleDropdownLeave}>
+                  <SlabsDropdown
+                    gradeCompanies={gradeCompanies}
+                    companiesLoaded={companiesLoaded}
+                    setActiveDropdown={setActiveDropdown}
+                  />
+                </div>
               )}
             </div>
             
-            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium">
+            <a href="#" className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium px-3 py-2 hover:bg-purple-50 dark:hover:bg-purple-900/10 rounded-lg">
               New Arrivals
             </a>
           </nav>
@@ -206,10 +247,11 @@ export default function Navbar() {
           subsetsLoaded={subsetsLoaded}
         />
 
-        {/* Overlay to close dropdowns when clicking outside */}
+        {/* Dark Overlay for Desktop Dropdowns */}
         {activeDropdown && (
           <div 
-            className="fixed inset-0 z-40" 
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-all duration-300" 
+            style={{ top: '80px' }}
             onClick={() => setActiveDropdown(null)}
           />
         )}
