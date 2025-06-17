@@ -1,7 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, useCallback } from 'react'
-import { throttle } from './utils'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const DarkModeContext = createContext()
 
@@ -21,7 +20,7 @@ export function DarkModeProvider({ children }) {
         // Set state first
         setIsDarkMode(shouldBeDark)
         
-        // Then update DOM
+        // Then update DOM immediately
         if (shouldBeDark) {
           document.documentElement.classList.add('dark')
         } else {
@@ -43,41 +42,30 @@ export function DarkModeProvider({ children }) {
     requestAnimationFrame(initializeTheme)
   }, [])
 
-  // Throttled toggle function to prevent rapid successive calls
-  const toggleDarkModeThrottled = useCallback(
-    throttle(() => {
-      // Add transition class for smooth switching
-      document.documentElement.classList.add('dark-mode-transitioning')
+  // Immediate toggle function
+  const toggleDarkMode = () => {
+    setIsDarkMode(prevMode => {
+      const newDarkMode = !prevMode
       
-      setIsDarkMode(prevMode => {
-        const newDarkMode = !prevMode
-        
-        try {
-          if (newDarkMode) {
-            document.documentElement.classList.add('dark')
-            localStorage.setItem('theme', 'dark')
-          } else {
-            document.documentElement.classList.remove('dark')
-            localStorage.setItem('theme', 'light')
-          }
-        } catch (error) {
-          console.warn('Failed to save theme preference:', error)
+      try {
+        if (newDarkMode) {
+          document.documentElement.classList.add('dark')
+          localStorage.setItem('theme', 'dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+          localStorage.setItem('theme', 'light')
         }
+      } catch (error) {
+        console.warn('Failed to save theme preference:', error)
+      }
 
-        return newDarkMode
-      })
-
-      // Remove transition class after transition completes
-      setTimeout(() => {
-        document.documentElement.classList.remove('dark-mode-transitioning')
-      }, 300)
-    }, 100), // Throttle to once every 100ms
-    []
-  )
+      return newDarkMode
+    })
+  }
 
   const value = {
     isDarkMode,
-    toggleDarkMode: toggleDarkModeThrottled,
+    toggleDarkMode,
     mounted
   }
 
