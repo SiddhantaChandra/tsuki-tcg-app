@@ -151,6 +151,11 @@ export default function Navbar() {
                 <OnePieceDropdown
                   sets={onePieceSets}
                   isLoading={isLoading}
+                  hoveredSet={hoveredSet}
+                  subsetsBySetId={subsetsBySetId}
+                  subsetsLoaded={subsetsLoaded}
+                  handleSetHover={handleSetHover}
+                  handleSetLeave={handleSetLeave}
                   setActiveDropdown={setActiveDropdown}
                 />
               )}
