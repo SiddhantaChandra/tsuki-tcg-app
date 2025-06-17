@@ -3,7 +3,7 @@ export const cardData = [
   // Featured Cards (Dark/Villain themed) - 12 cards
   { 
     id: 1, 
-    src: '/1.png', 
+    src: '/assets/images/1.png', 
     title: 'Dark Charizard', 
     price: 299.99, 
     series: 'Team Rocket Returns',
@@ -16,7 +16,7 @@ export const cardData = [
   },
   { 
     id: 2, 
-    src: '/2.png', 
+    src: '/assets/images/2.png', 
     title: "Rocket's Mewtwo EX", 
     price: 189.99, 
     series: 'Team Rocket Returns',
@@ -29,7 +29,7 @@ export const cardData = [
   },
   { 
     id: 3, 
-    src: '/3.jpg', 
+    src: '/assets/images/3.jpg', 
     title: 'Dark Blastoise', 
     price: 159.99, 
     series: 'Team Rocket Returns',
@@ -42,7 +42,7 @@ export const cardData = [
   },
   { 
     id: 4, 
-    src: '/4.jpg', 
+    src: '/assets/images/4.jpg', 
     title: "Giovanni's Machamp", 
     price: 129.99, 
     series: 'Team Rocket Returns',
@@ -55,7 +55,7 @@ export const cardData = [
   },
   { 
     id: 5, 
-    src: '/5.jpg', 
+    src: '/assets/images/5.jpg', 
     title: 'Dark Gyarados', 
     price: 219.99, 
     series: 'Team Rocket Returns',
@@ -68,7 +68,7 @@ export const cardData = [
   },
   { 
     id: 6, 
-    src: '/6.jpg', 
+    src: '/assets/images/6.jpg', 
     title: "Team Rocket's Scyther", 
     price: 99.99, 
     series: 'Team Rocket Returns',
@@ -81,7 +81,7 @@ export const cardData = [
   },
   { 
     id: 7, 
-    src: '/7.jpg', 
+    src: '/assets/images/7.jpg', 
     title: 'Shadow Venomoth', 
     price: 79.99, 
     series: 'Team Rocket Returns',
@@ -94,7 +94,7 @@ export const cardData = [
   },
   { 
     id: 8, 
-    src: '/8.jpg', 
+    src: '/assets/images/8.jpg', 
     title: 'Dark Alakazam', 
     price: 249.99, 
     series: 'Team Rocket Returns',
@@ -107,7 +107,7 @@ export const cardData = [
   },
   { 
     id: 9, 
-    src: '/9.png', 
+    src: '/assets/images/9.png', 
     title: "Rocket's Zapdos EX", 
     price: 199.99, 
     series: 'Team Rocket Returns',
@@ -120,7 +120,7 @@ export const cardData = [
   },
   { 
     id: 10, 
-    src: '/10.png', 
+    src: '/assets/images/10.png', 
     title: 'Dark Gengar', 
     price: 169.99, 
     series: 'Team Rocket Returns',
@@ -133,7 +133,7 @@ export const cardData = [
   },
   { 
     id: 11, 
-    src: '/11.jpg', 
+    src: '/assets/images/11.jpg', 
     title: "Giovanni's Persian", 
     price: 89.99, 
     series: 'Team Rocket Returns',
@@ -146,7 +146,7 @@ export const cardData = [
   },
   { 
     id: 12, 
-    src: '/12.jpg', 
+    src: '/assets/images/12.jpg', 
     title: 'Dark Dragonite', 
     price: 329.99, 
     series: 'Team Rocket Returns',
@@ -161,7 +161,7 @@ export const cardData = [
   // Recently Added Cards - 12 cards
   { 
     id: 13, 
-    src: '/13.jpg', 
+    src: '/assets/images/13.jpg', 
     title: 'Mystical Aurora Dragon', 
     price: 149.99, 
     rarity: 'Ultra Rare',
@@ -174,7 +174,7 @@ export const cardData = [
   },
   { 
     id: 14, 
-    src: '/14.jpg', 
+    src: '/assets/images/14.jpg', 
     title: 'Crystal Phoenix Guardian', 
     price: 89.99, 
     rarity: 'Super Rare',
@@ -187,7 +187,7 @@ export const cardData = [
   },
   { 
     id: 15, 
-    src: '/15.jpg', 
+    src: '/assets/images/15.jpg', 
     title: 'Thunder Beast Emperor', 
     price: 199.99, 
     rarity: 'Secret Rare',
@@ -200,7 +200,7 @@ export const cardData = [
   },
   { 
     id: 16, 
-    src: '/16.jpg', 
+    src: '/assets/images/16.jpg', 
     title: 'Shadow Blade Master', 
     price: 119.99, 
     rarity: 'Rare',
@@ -213,7 +213,7 @@ export const cardData = [
   },
   { 
     id: 17, 
-    src: '/1.png', 
+    src: '/assets/images/1.png', 
     title: 'Celestial Knight', 
     price: 179.99, 
     rarity: 'Ultra Rare',
@@ -226,7 +226,7 @@ export const cardData = [
   },
   { 
     id: 18, 
-    src: '/2.png', 
+    src: '/assets/images/2.png', 
     title: 'Void Sorceress', 
     price: 129.99, 
     rarity: 'Super Rare',
@@ -239,7 +239,7 @@ export const cardData = [
   },
   { 
     id: 19, 
-    src: '/3.jpg', 
+    src: '/assets/images/3.jpg', 
     title: 'Flame Titan Warrior', 
     price: 159.99, 
     rarity: 'Ultra Rare',
@@ -252,7 +252,7 @@ export const cardData = [
   },
   { 
     id: 20, 
-    src: '/4.jpg', 
+    src: '/assets/images/4.jpg', 
     title: 'Ice Queen Empress', 
     price: 139.99, 
     rarity: 'Super Rare',
@@ -265,7 +265,7 @@ export const cardData = [
   },
   { 
     id: 21, 
-    src: '/5.jpg', 
+    src: '/assets/images/5.jpg', 
     title: 'Storm Lord Commander', 
     price: 189.99, 
     rarity: 'Ultra Rare',
@@ -278,7 +278,7 @@ export const cardData = [
   },
   { 
     id: 22, 
-    src: '/6.jpg', 
+    src: '/assets/images/6.jpg', 
     title: 'Earth Shaker Golem', 
     price: 109.99, 
     rarity: 'Rare',
@@ -291,7 +291,7 @@ export const cardData = [
   },
   { 
     id: 23, 
-    src: '/7.jpg', 
+    src: '/assets/images/7.jpg', 
     title: 'Wind Dancer Sprite', 
     price: 79.99, 
     rarity: 'Super Rare',
@@ -304,7 +304,7 @@ export const cardData = [
   },
   { 
     id: 24, 
-    src: '/8.jpg', 
+    src: '/assets/images/8.jpg', 
     title: 'Cosmic Star Destroyer', 
     price: 229.99, 
     rarity: 'Secret Rare',
@@ -319,7 +319,7 @@ export const cardData = [
   // One Piece Collection - 12 cards
   { 
     id: 25, 
-    src: '/9.png', 
+    src: '/assets/images/9.png', 
     title: 'Monkey D. Luffy Gear 5', 
     price: 249.99, 
     character: 'Luffy',
@@ -331,7 +331,7 @@ export const cardData = [
   },
   { 
     id: 26, 
-    src: '/10.png', 
+    src: '/assets/images/10.png', 
     title: 'Roronoa Zoro Three-Sword', 
     price: 179.99, 
     character: 'Zoro',
@@ -343,7 +343,7 @@ export const cardData = [
   },
   { 
     id: 27, 
-    src: '/11.jpg', 
+    src: '/assets/images/11.jpg', 
     title: 'Nami Thunder Clima', 
     price: 99.99, 
     character: 'Nami',
@@ -355,7 +355,7 @@ export const cardData = [
   },
   { 
     id: 28, 
-    src: '/12.jpg', 
+    src: '/assets/images/12.jpg', 
     title: 'Sanji Diable Jambe', 
     price: 139.99, 
     character: 'Sanji',
@@ -367,7 +367,7 @@ export const cardData = [
   },
   { 
     id: 29, 
-    src: '/13.jpg', 
+    src: '/assets/images/13.jpg', 
     title: 'Tony Tony Chopper Monster', 
     price: 119.99, 
     character: 'Chopper',
@@ -379,7 +379,7 @@ export const cardData = [
   },
   { 
     id: 30, 
-    src: '/14.jpg', 
+    src: '/assets/images/14.jpg', 
     title: 'Nico Robin Devil Child', 
     price: 159.99, 
     character: 'Robin',
@@ -391,7 +391,7 @@ export const cardData = [
   },
   { 
     id: 31, 
-    src: '/15.jpg', 
+    src: '/assets/images/15.jpg', 
     title: 'Franky Cyborg General', 
     price: 129.99, 
     character: 'Franky',
@@ -403,7 +403,7 @@ export const cardData = [
   },
   { 
     id: 32, 
-    src: '/16.jpg', 
+    src: '/assets/images/16.jpg', 
     title: 'Brook Soul King', 
     price: 109.99, 
     character: 'Brook',
@@ -415,7 +415,7 @@ export const cardData = [
   },
   { 
     id: 33, 
-    src: '/1.png', 
+    src: '/assets/images/1.png', 
     title: 'Jinbe Knight of the Sea', 
     price: 189.99, 
     character: 'Jinbe',
@@ -427,7 +427,7 @@ export const cardData = [
   },
   { 
     id: 34, 
-    src: '/2.png', 
+    src: '/assets/images/2.png', 
     title: 'Portgas D. Ace Fire Fist', 
     price: 299.99, 
     character: 'Ace',
@@ -439,7 +439,7 @@ export const cardData = [
   },
   { 
     id: 35, 
-    src: '/3.jpg', 
+    src: '/assets/images/3.jpg', 
     title: 'Trafalgar Law Surgeon', 
     price: 219.99, 
     character: 'Law',
@@ -451,7 +451,7 @@ export const cardData = [
   },
   { 
     id: 36, 
-    src: '/4.jpg', 
+    src: '/assets/images/4.jpg', 
     title: 'Eustass Kid Magnetic', 
     price: 199.99, 
     character: 'Kid',

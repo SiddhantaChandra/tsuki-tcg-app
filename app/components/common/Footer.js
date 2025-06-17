@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-3 mb-4">
               <Image 
-                src="/logo-1.webp" 
+                src="/assets/images/logo-1.webp" 
                 alt="Tsuki Cards Logo" 
                 width={30} 
                 height={30}

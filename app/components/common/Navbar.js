@@ -333,7 +333,7 @@ export default function Navbar() {
           {/* Logo Section */}
           <div className="flex items-center space-x-3 sm:space-x-4">
             <Image 
-              src="/logo-1.webp" 
+              src="/assets/images/logo-1.webp" 
               alt="Tsuki Cards Logo" 
               width={32} 
               height={32}

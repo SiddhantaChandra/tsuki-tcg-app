@@ -123,7 +123,7 @@ export default function HeroBanner() {
               custom={{ rotate: -12, delay: 0.2 }}
             >
               <Image 
-                src="/10.png" 
+                src="/assets/images/10.png" 
                 alt="Card" 
                 width={100} 
                 height={126}
@@ -143,7 +143,7 @@ export default function HeroBanner() {
               custom={{ rotate: 0, delay: 0.4 }}
             >
               <Image 
-                src="/16.jpg" 
+                src="/assets/images/16.jpg" 
                 alt="Card" 
                 width={100} 
                 height={126}
@@ -163,7 +163,7 @@ export default function HeroBanner() {
               custom={{ rotate: 12, delay: 0.6 }}
             >
               <Image 
-                src="/15.jpg" 
+                src="/assets/images/15.jpg" 
                 alt="Card" 
                 width={100} 
                 height={126}
@@ -227,7 +227,7 @@ export default function HeroBanner() {
               custom={{ rotate: -12, delay: 0.8 }}
             >
               <Image 
-                src="/13.jpg" 
+                src="/assets/images/13.jpg" 
                 alt="Card" 
                 width={100} 
                 height={126}
@@ -247,7 +247,7 @@ export default function HeroBanner() {
               custom={{ rotate: 0, delay: 1.0 }}
             >
               <Image 
-                src="/4.jpg" 
+                src="/assets/images/4.jpg" 
                 alt="Card" 
                 width={100} 
                 height={126}
@@ -267,7 +267,7 @@ export default function HeroBanner() {
               custom={{ rotate: 12, delay: 1.2 }}
             >
               <Image 
-                src="/12.jpg" 
+                src="/assets/images/12.jpg" 
                 alt="Card" 
                 width={100} 
                 height={126}
