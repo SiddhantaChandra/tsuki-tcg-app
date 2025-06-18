@@ -1,10 +1,12 @@
 import { Search, Cart, Menu, Xmark } from 'iconoir-react'
 import DarkModeToggle from '../DarkModeToggle'
+import { useAuth } from '../AuthContext'
 
 export default function NavbarActions({ 
   isMobileMenuOpen, 
   toggleMobileMenu 
 }) {
+  const { openSignIn } = useAuth()
   return (
     <>
       {/* Desktop Actions */}
@@ -17,7 +19,10 @@ export default function NavbarActions({
           <Cart className="w-5 h-5" />
           <span className="absolute -top-1 -right-1 bg-purple-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
         </button>
-        <button className="px-3 py-2 lg:px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg text-sm font-medium hover:from-purple-700 hover:to-pink-700 transition-all touch-manipulation">
+        <button 
+          onClick={openSignIn}
+          className="px-3 py-2 lg:px-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg text-sm font-medium hover:from-purple-700 hover:to-pink-700 transition-all touch-manipulation"
+        >
           Sign In
         </button>
       </div>

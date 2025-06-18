@@ -1,5 +1,7 @@
 import './globals.css'
 import { DarkModeProvider } from './components/common/DarkModeContext'
+import { AuthProvider } from './components/common/AuthContext'
+import AuthModals from './components/common/auth/AuthModals'
 
 export const metadata = {
   title: 'Tsuki TCG - Trading Card Collection',
@@ -11,7 +13,10 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body>
         <DarkModeProvider>
-          {children}
+          <AuthProvider>
+            {children}
+            <AuthModals />
+          </AuthProvider>
         </DarkModeProvider>
       </body>
     </html>

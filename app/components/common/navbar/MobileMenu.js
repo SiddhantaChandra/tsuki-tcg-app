@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavArrowDown, ArrowLeft, Xmark } from 'iconoir-react'
+import { useAuth } from '../AuthContext'
 
 export default function MobileMenu({
   isMobileMenuOpen,
@@ -14,6 +15,7 @@ export default function MobileMenu({
   subsetsBySetId,
   subsetsLoaded
 }) {
+  const { openSignIn, openSignUp } = useAuth()
   const [selectedSet, setSelectedSet] = useState(null)
   const [showSubsets, setShowSubsets] = useState(false)
 
@@ -308,13 +310,25 @@ export default function MobileMenu({
               New Arrivals
             </a>
             
-            {/* Mobile Sign In Button */}
-            <div className="pt-4 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
+            {/* Mobile Auth Buttons */}
+            <div className="pt-4 space-y-3 animate-fadeInUp" style={{ animationDelay: '0.5s' }}>
               <button 
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  openSignIn()
+                  closeMobileMenu()
+                }}
                 className="w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg text-lg font-medium hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg transform"
               >
                 Sign In
+              </button>
+              <button 
+                onClick={() => {
+                  openSignUp()
+                  closeMobileMenu()
+                }}
+                className="w-full px-6 py-4 bg-white dark:bg-gray-800 border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg text-lg font-medium hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg transform"
+              >
+                Create Account
               </button>
             </div>
           </div>
