@@ -13,7 +13,7 @@ export default function AuthToggle({ activeTab, onTabChange }) {
           translateX: activeTab === 'login' ? 0 : 'calc(100% + 0.25rem)'
         }}
         transition={{ 
-          type: "spring", 
+          type: "spring",
           stiffness: 300, 
           damping: 30 
         }}

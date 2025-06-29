@@ -203,7 +203,7 @@ export default function SlabDetailPage({ params }) {
             {/* Product Links */}
             <div className="space-y-2">
               <Link href="#" className="block text-sm text-orange-500 hover:text-orange-600 hover:underline">
-                User's Guide
+                User&apos;s Guide
               </Link>
               <Link href="#" className="block text-sm text-orange-500 hover:text-orange-600 hover:underline">
                 About delivery

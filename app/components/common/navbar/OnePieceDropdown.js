@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function OnePieceDropdown({
   sets,
@@ -63,13 +64,13 @@ export default function OnePieceDropdown({
           
           {/* View All Link - At bottom of sets column */}
           <div className="border-t border-gray-200 dark:border-neutral-700 px-5 py-2 text-right flex-shrink-0">
-            <a
+            <Link
               href="/category/op"
               className="inline-block text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
               onClick={() => setActiveDropdown(null)}
             >
               View All One Piece Cards →
-            </a>
+            </Link>
           </div>
         </div>
 
