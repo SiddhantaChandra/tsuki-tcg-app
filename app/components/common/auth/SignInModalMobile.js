@@ -8,17 +8,33 @@ import { useAuth } from '../AuthContext'
 import AuthToggle from './AuthToggle'
 
 export default function SignInModalMobile() {
-  const { isSignInOpen, closeModals, switchToSignUp, activeTab, handleTabChange } = useAuth()
+  const { isSignInOpen, closeModals, switchToSignUp, activeTab, handleTabChange, signIn, authLoading } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Sign in:', formData)
-    closeModals()
+    setError('')
+    
+    try {
+      const { data, error } = await signIn(formData.email, formData.password)
+      
+      if (error) {
+        setError(error.message)
+        return
+      }
+      
+      // Reset form and close modal on success
+      setFormData({ email: '', password: '' })
+      closeModals()
+      
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+    }
   }
 
   const handleChange = (e) => {
@@ -67,6 +83,13 @@ export default function SignInModalMobile() {
               onTabChange={handleTabChange}
             />
           </div>
+
+          {/* Error Message */}
+          {error && (
+            <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+              <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+            </div>
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-3 mb-5">
@@ -120,9 +143,10 @@ export default function SignInModalMobile() {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-2.5 px-4 rounded-lg transition-all text-sm"
+              disabled={authLoading}
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-purple-400 disabled:to-pink-400 disabled:cursor-not-allowed text-white font-medium py-2.5 px-4 rounded-lg transition-all text-sm"
             >
-              Login
+              {authLoading ? 'Signing In...' : 'Login'}
             </button>
           </form>
 

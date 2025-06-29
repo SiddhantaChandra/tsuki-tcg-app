@@ -8,9 +8,11 @@ import { useAuth } from '../AuthContext'
 import AuthToggle from './AuthToggle'
 
 export default function SignUpModalMobile() {
-  const { isSignUpOpen, closeModals, switchToSignIn, activeTab, handleTabChange } = useAuth()
+  const { isSignUpOpen, closeModals, switchToSignIn, activeTab, handleTabChange, signUp, authLoading } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -18,14 +20,55 @@ export default function SignUpModalMobile() {
     confirmPassword: ''
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+    setSuccess('')
+    
+    // Validation
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match')
+      setError('Passwords do not match')
       return
     }
-    console.log('Sign up:', formData)
-    closeModals()
+    
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long')
+      return
+    }
+    
+    try {
+      const { data, error } = await signUp(
+        formData.email,
+        formData.password,
+        {
+          full_name: formData.fullName
+        }
+      )
+      
+      if (error) {
+        setError(error.message)
+        return
+      }
+      
+      setSuccess('Account created successfully! Please check your email to verify your account.')
+      
+      // Reset form
+      setFormData({
+        fullName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      })
+      
+      // Close modal after a short delay to show success message
+      setTimeout(() => {
+        closeModals()
+        setSuccess('')
+      }, 3000)
+      
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+    }
   }
 
   const handleChange = (e) => {
@@ -74,6 +117,19 @@ export default function SignUpModalMobile() {
               onTabChange={handleTabChange}
             />
           </div>
+
+          {/* Error/Success Messages */}
+          {error && (
+            <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+              <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+            </div>
+          )}
+          
+          {success && (
+            <div className="mb-4 p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+              <p className="text-sm text-green-600 dark:text-green-400">{success}</p>
+            </div>
+          )}
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-3 mb-5">
@@ -157,9 +213,10 @@ export default function SignUpModalMobile() {
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium py-2.5 px-4 rounded-lg transition-all text-sm"
+              disabled={authLoading}
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-purple-400 disabled:to-pink-400 disabled:cursor-not-allowed text-white font-medium py-2.5 px-4 rounded-lg transition-all text-sm"
             >
-              Create account
+              {authLoading ? 'Creating account...' : 'Create account'}
             </button>
           </form>
 

@@ -1,7 +1,8 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { useScrollLock } from './utils'
+import { supabase } from '../../../lib/supabase'
 
 const AuthContext = createContext()
 
@@ -10,10 +11,38 @@ export function AuthProvider({ children }) {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [activeTab, setActiveTab] = useState('login') // Centralized tab state
+  const [loading, setLoading] = useState(true)
+  const [authLoading, setAuthLoading] = useState(false)
   
   // Apply scroll lock when any modal is open
   const isAnyModalOpen = isSignInOpen || isSignUpOpen
   useScrollLock(isAnyModalOpen)
+
+  // Check for existing session on mount
+  useEffect(() => {
+    getSession()
+    
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        setUser(session?.user ?? null)
+        setLoading(false)
+      }
+    )
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  async function getSession() {
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      setUser(session?.user ?? null)
+    } catch (error) {
+      console.error('Error getting session:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const openSignIn = () => {
     setIsSignInOpen(true)
@@ -53,6 +82,71 @@ export function AuthProvider({ children }) {
     }
   }
 
+  // Auth functions
+  const signUp = async (email, password, userData = {}) => {
+    try {
+      setAuthLoading(true)
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: userData
+        }
+      })
+      
+      if (error) {
+        throw error
+      }
+      
+      return { data, error: null }
+    } catch (error) {
+      console.error('Sign up error:', error)
+      return { data: null, error }
+    } finally {
+      setAuthLoading(false)
+    }
+  }
+
+  const signIn = async (email, password) => {
+    try {
+      setAuthLoading(true)
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      })
+      
+      if (error) {
+        throw error
+      }
+      
+      return { data, error: null }
+    } catch (error) {
+      console.error('Sign in error:', error)
+      return { data: null, error }
+    } finally {
+      setAuthLoading(false)
+    }
+  }
+
+  const signOut = async () => {
+    try {
+      setAuthLoading(true)
+      const { error } = await supabase.auth.signOut()
+      
+      if (error) {
+        throw error
+      }
+      
+      setUser(null)
+      return { error: null }
+    } catch (error) {
+      console.error('Sign out error:', error)
+      return { error }
+    } finally {
+      setAuthLoading(false)
+    }
+  }
+
   const value = {
     isSignInOpen,
     isSignUpOpen,
@@ -60,12 +154,17 @@ export function AuthProvider({ children }) {
     setUser,
     activeTab,
     setActiveTab,
+    loading,
+    authLoading,
     openSignIn,
     openSignUp,
     closeModals,
     switchToSignUp,
     switchToSignIn,
-    handleTabChange
+    handleTabChange,
+    signUp,
+    signIn,
+    signOut
   }
 
   return (

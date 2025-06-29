@@ -8,19 +8,34 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 export default function SignInModal() {
-  const { isSignInOpen, closeModals, switchToSignUp } = useAuth()
+  const { isSignInOpen, closeModals, switchToSignUp, signIn, authLoading } = useAuth()
   const { isDarkMode } = useDarkMode()
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle sign in logic here
-    console.log('Sign in:', formData)
-    closeModals()
+    setError('')
+    
+    try {
+      const { data, error } = await signIn(formData.email, formData.password)
+      
+      if (error) {
+        setError(error.message)
+        return
+      }
+      
+      // Reset form and close modal on success
+      setFormData({ email: '', password: '' })
+      closeModals()
+      
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+    }
   }
 
   const handleChange = (e) => {
@@ -64,7 +79,7 @@ export default function SignInModal() {
               </div>
 
               {/* Divider */}
-                              <div className="relative mb-4">
+              <div className="relative mb-4">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300 dark:border-gray-600" />
                 </div>
@@ -72,6 +87,13 @@ export default function SignInModal() {
                   <span className="px-2 bg-white dark:bg-neutral-900 text-gray-500">or</span>
                 </div>
               </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                  <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+                </div>
+              )}
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -132,9 +154,10 @@ export default function SignInModal() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+                  disabled={authLoading}
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:transform-none"
                 >
-                  Login
+                  {authLoading ? 'Signing In...' : 'Login'}
                 </button>
               </form>
 

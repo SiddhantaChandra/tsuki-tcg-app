@@ -8,10 +8,12 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 export default function SignUpModal() {
-  const { isSignUpOpen, closeModals, switchToSignIn } = useAuth()
+  const { isSignUpOpen, closeModals, switchToSignIn, signUp, authLoading } = useAuth()
   const { isDarkMode } = useDarkMode()
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -20,15 +22,58 @@ export default function SignUpModal() {
     confirmPassword: ''
   })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle sign up logic here
+    setError('')
+    setSuccess('')
+    
+    // Validation
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match')
+      setError('Passwords do not match')
       return
     }
-    console.log('Sign up:', formData)
-    closeModals()
+    
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long')
+      return
+    }
+    
+    try {
+      const { data, error } = await signUp(
+        formData.email,
+        formData.password,
+        {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          full_name: `${formData.firstName} ${formData.lastName}`
+        }
+      )
+      
+      if (error) {
+        setError(error.message)
+        return
+      }
+      
+      setSuccess('Account created successfully! Please check your email to verify your account.')
+      
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+      })
+      
+      // Close modal after a short delay to show success message
+      setTimeout(() => {
+        closeModals()
+        setSuccess('')
+      }, 3000)
+      
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+    }
   }
 
   const handleChange = (e) => {
@@ -80,6 +125,19 @@ export default function SignUpModal() {
                   <span className="px-2 bg-white dark:bg-neutral-900 text-gray-500">or</span>
                 </div>
               </div>
+
+              {/* Error/Success Messages */}
+              {error && (
+                <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                  <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+                </div>
+              )}
+              
+              {success && (
+                <div className="mb-4 p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                  <p className="text-sm text-green-600 dark:text-green-400">{success}</p>
+                </div>
+              )}
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-3">
@@ -197,9 +255,10 @@ export default function SignUpModal() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 text-sm px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+                  disabled={authLoading}
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed text-white font-semibold py-2 text-sm px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] disabled:transform-none"
                 >
-                  Create Account
+                  {authLoading ? 'Creating Account...' : 'Create Account'}
                 </button>
               </form>
 
