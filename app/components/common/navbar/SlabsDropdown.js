@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function SlabsDropdown({
   gradeCompanies,
@@ -29,32 +30,32 @@ export default function SlabsDropdown({
           <div className="flex-1 py-5 px-4 overflow-y-auto">
             <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Categories</h4>
             <div className="space-y-1">
-              <a
+              <Link
                 href="/slabs/category/poke"
                 className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded transition-colors"
                 onClick={() => setActiveDropdown(null)}
               >
                 Pokemon Slabs
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/slabs/category/op"
                 className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded transition-colors"
                 onClick={() => setActiveDropdown(null)}
               >
                 One Piece Slabs
-              </a>
+              </Link>
             </div>
           </div>
           
           {/* View All Link - At bottom of categories column */}
           <div className="border-t border-gray-200 dark:border-neutral-700 px-5 py-2 text-right flex-shrink-0">
-            <a
+            <Link
               href="/slabs"
               className="inline-block text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
               onClick={() => setActiveDropdown(null)}
             >
               View All Slabs →
-            </a>
+            </Link>
           </div>
         </div>
 

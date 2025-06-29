@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Link from 'next/link'
 import { NavArrowDown, ArrowLeft, Xmark } from 'iconoir-react'
 import { useAuth } from '../AuthContext'
 
@@ -138,13 +139,13 @@ export default function MobileMenu({
                   ) : (
                     <div className="px-4 py-3 text-gray-500 dark:text-gray-400">No sets available</div>
                   )}
-                  <a
+                  <Link
                     href="/category/poke"
                     onClick={closeMobileMenu}
                     className="block px-4 py-3 text-sm font-medium text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 rounded-lg transition-all duration-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:scale-[1.02] hover:shadow-md"
                   >
                     View All Pokemon Cards →
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -203,13 +204,13 @@ export default function MobileMenu({
                   ) : (
                     <div className="px-4 py-3 text-gray-500 dark:text-gray-400">No sets available</div>
                   )}
-                  <a
+                  <Link
                     href="/category/op"
                     onClick={closeMobileMenu}
                     className="block px-4 py-3 text-sm font-medium text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 rounded-lg transition-all duration-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:scale-[1.02] hover:shadow-md"
                   >
                     View All One Piece Cards →
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -235,20 +236,20 @@ export default function MobileMenu({
                       <div className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">Categories</div>
                     </div>
                     <div className="space-y-1 animate-slideInLeft" style={{ animationDelay: '0.1s' }}>
-                      <a
+                      <Link
                         href="/slabs/category/poke"
                         onClick={closeMobileMenu}
                         className="block px-4 py-3 bg-gray-50 dark:bg-neutral-800 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-all duration-300 hover:scale-[1.01] hover:translate-x-1"
                       >
                         Pokemon Slabs
-                      </a>
-                      <a 
+                      </Link>
+                      <Link 
                         href="/slabs/category/op"
                         onClick={closeMobileMenu}
                         className="block px-4 py-3 bg-gray-50 dark:bg-neutral-800 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-all duration-300 hover:scale-[1.01] hover:translate-x-1"
                       >
                         One Piece Slabs
-                      </a>
+                      </Link>
                     </div>
                   </div>
 
@@ -276,26 +277,26 @@ export default function MobileMenu({
                         <div className="px-4 py-3 bg-gray-50 dark:bg-neutral-800 rounded-lg text-sm text-gray-500 dark:text-gray-400">No companies available</div>
                       )}
                       {gradeCompanies.length > 4 && (
-                        <a
+                        <Link
                           href="/slabs"
                           onClick={closeMobileMenu}
                           className="block px-4 py-2 text-center text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                         >
                           +{gradeCompanies.length - 4} more companies
-                        </a>
+                        </Link>
                       )}
                     </div>
                   </div>
 
                   {/* View All Link */}
                   <div className="pt-2 animate-slideInLeft" style={{ animationDelay: '0.3s' }}>
-                    <a
+                    <Link
                       href="/slabs"
                       onClick={closeMobileMenu}
                       className="block px-4 py-3 text-sm font-medium text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-900/20 rounded-lg transition-all duration-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:scale-[1.02] hover:shadow-md"
                     >
                       View All Slabs →
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
