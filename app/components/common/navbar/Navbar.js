@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { NavArrowDown } from 'iconoir-react'
 import { getSetsByCategory, getGradeCompanies, getAllSubsets } from '../../../../lib/database'
+import { useScrollLock } from '../utils'
 
 import NavbarLogo from './NavbarLogo'
 import NavbarActions from './NavbarActions'
@@ -23,6 +24,9 @@ export default function Navbar() {
   const [subsetsLoaded, setSubsetsLoaded] = useState(false)
   const [companiesLoaded, setCompaniesLoaded] = useState(false)
   const [closeTimeout, setCloseTimeout] = useState(null)
+  
+  // Apply scroll lock when mobile menu is open
+  useScrollLock(isMobileMenuOpen)
 
   // Fetch sets data on component mount
   useEffect(() => {
@@ -64,21 +68,7 @@ export default function Navbar() {
     fetchSets()
   }, [])
 
-  // Handle body scroll lock when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      // Disable scroll
-      document.body.style.overflow = 'hidden'
-    } else {
-      // Re-enable scroll
-      document.body.style.overflow = 'unset'
-    }
 
-    // Cleanup function to ensure scroll is re-enabled when component unmounts
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isMobileMenuOpen])
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)

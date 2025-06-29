@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { getRarityColor } from '../common/utils'
 
-export default function CardFeatured({ src, title, price, rarity, condition, description, series }) {
+export default function CardFeatured({ id, src, title, price, rarity, condition, description, series }) {
   return (
-    <div className="flex-shrink-0 w-[150px] sm:w-32 md:w-52 lg:w-52 2xl:w-48 h-full flex flex-col shadow-md shadow-gray-900/50 rounded-lg overflow-hidden">
+    <Link href={`/cards/${id}`} className="flex-shrink-0 w-[150px] sm:w-32 md:w-52 lg:w-52 2xl:w-48 h-full flex flex-col shadow-md shadow-gray-900/50 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-gray-900/70 cursor-pointer">
       <div className="relative aspect-[3/4] w-full p-4 sm:p-6 bg-gray-800 dark:bg-neutral-900">
         <Image
           src={src}
@@ -25,11 +26,14 @@ export default function CardFeatured({ src, title, price, rarity, condition, des
         </div>
         <div className="flex flex-col justify-between gap-2 mt-auto">
           <span className="font-bold text-red-400">${price}</span>
-          <button className="px-3 py-2 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-colors">
+          <button 
+            onClick={(e) => e.preventDefault()}
+            className="px-3 py-2 bg-red-600 text-white text-xs rounded hover:bg-red-700 transition-colors"
+          >
             Acquire
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   )
 } 

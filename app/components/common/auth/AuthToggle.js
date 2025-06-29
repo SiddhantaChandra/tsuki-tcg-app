@@ -7,10 +7,10 @@ export default function AuthToggle({ activeTab, onTabChange }) {
     <div className="relative bg-gray-100 dark:bg-neutral-800 p-1 rounded-lg flex">
       {/* Background slider */}
       <motion.div
-        className="absolute top-1 bottom-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-md shadow-sm"
+        className="absolute top-1 bottom-1 left-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-md shadow-sm"
+        style={{ width: 'calc(50% - 0.4rem)' }}
         animate={{
-          x: activeTab === 'login' ? 0 : '100%',
-          width: '50%'
+          translateX: activeTab === 'login' ? 0 : 'calc(100% + 0.25rem)'
         }}
         transition={{ 
           type: "spring", 

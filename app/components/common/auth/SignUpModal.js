@@ -58,24 +58,9 @@ export default function SignUpModal() {
           <div className="flex flex-col md:flex-row h-full">
             {/* Left side - Form */}
             <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto flex flex-col justify-center">
-              {/* Header */}
-              <div className="flex items-start justify-between mb-8">
-                <div>
-                  <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    Get Started Now
-                  </h1>
-                </div>
-                <button
-                  onClick={closeModals}
-                  className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                >
-                  <Xmark className="w-6 h-6" />
-                </button>
-              </div>
-
               {/* Social Login */}
-              <div className="mb-6">
-                <button className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
+              <div className="mb-4">
+                <button className="w-full flex items-center justify-center gap-3 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
                   <Image
                     src="/assets/images/auth/GoogleIcon.svg"
                     alt="Google"
@@ -87,7 +72,7 @@ export default function SignUpModal() {
               </div>
 
               {/* Divider */}
-              <div className="relative mb-6">
+              <div className="relative mb-2">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300 dark:border-gray-600" />
                 </div>
@@ -97,10 +82,10 @@ export default function SignUpModal() {
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-2xs mb-1 font-bold text-gray-700 dark:text-gray-300 ">
                       First Name
                     </label>
                     <input
@@ -109,12 +94,12 @@ export default function SignUpModal() {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 text-xs border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       placeholder="John"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-2xs font-bold text-gray-700 dark:text-gray-300 mb-1">
                       Last Name
                     </label>
                     <input
@@ -123,14 +108,14 @@ export default function SignUpModal() {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 text-xs border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       placeholder="Doe"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-2xs font-bold text-gray-700 dark:text-gray-300 mb-1">
                     Email
                   </label>
                   <input
@@ -139,13 +124,13 @@ export default function SignUpModal() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-2 text-xs border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-2xs font-bold text-gray-700 dark:text-gray-300 mb-1">
                     Password
                   </label>
                   <div className="relative">
@@ -155,7 +140,7 @@ export default function SignUpModal() {
                       value={formData.password}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 text-xs pr-12 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       placeholder="Create a strong password"
                     />
                     <button
@@ -169,7 +154,7 @@ export default function SignUpModal() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-2xs font-bold text-gray-700 dark:text-gray-300 mb-1">
                     Confirm Password
                   </label>
                   <div className="relative">
@@ -179,7 +164,7 @@ export default function SignUpModal() {
                       value={formData.confirmPassword}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2 text-xs pr-12 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-neutral-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       placeholder="Confirm your password"
                     />
                     <button
@@ -192,11 +177,11 @@ export default function SignUpModal() {
                   </div>
                 </div>
 
-                <div className="flex items-start">
+                <div className="flex items-center text-sm">
                   <input
                     type="checkbox"
                     required
-                    className="mt-1 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
+                    className=" rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
                     I agree to the{' '}
@@ -212,15 +197,15 @@ export default function SignUpModal() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 text-sm px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Create Account
                 </button>
               </form>
 
               {/* Footer */}
-              <div className="mt-6 space-y-4">
-                <div className="text-center">
+              <div className="mt-2 space-y-4">
+                <div className="text-center text-sm">
                   <span className="text-gray-600 dark:text-gray-400">Already have an account? </span>
                   <button
                     onClick={switchToSignIn}

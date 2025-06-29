@@ -1,11 +1,40 @@
 'use client'
 
-import Card1 from '../../cards/card-1'
+import { useState, useEffect } from 'react'
+import DatabaseCard from '../../cards/DatabaseCard'
 import Carousel from '../../common/Carousel'
-import { getRecommendedCards } from '../../common/card-data'
+import { getMixedProducts } from '../../../../lib/database'
 
 export default function RecommendedSection() {
-  const recommendedCards = getRecommendedCards()
+  const [recommendedCards, setRecommendedCards] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadRecommendedCards() {
+      try {
+        const products = await getMixedProducts('featured', 12)
+        setRecommendedCards(products)
+      } catch (error) {
+        console.error('Error loading recommended products:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadRecommendedCards()
+  }, [])
+
+  if (loading) {
+    return (
+      <section id="recommended" className="py-12 sm:py-20 px-4 sm:px-6 bg-gray-100 dark:bg-neutral-800 transition-colors duration-300">
+        <div className="container mx-auto xl:max-w-6xl 2xl:max-w-7xl">
+          <div className="flex items-center justify-center h-64">
+            <div className="text-gray-900 dark:text-white text-lg">Loading recommended products...</div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="recommended" className="py-12 sm:py-20 px-4 sm:px-6 bg-gray-100 dark:bg-neutral-800 transition-colors duration-300">
@@ -24,8 +53,8 @@ export default function RecommendedSection() {
         </div>
         
         <Carousel buttonColor="purple">
-          {recommendedCards.map((card) => (
-            <Card1 key={card.id} src={card.src} title={card.title} price={card.price} rarity={card.rarity} condition={card.condition} />
+          {recommendedCards.map((item) => (
+            <DatabaseCard key={item.id} item={item} />
           ))}
         </Carousel>
       </div>

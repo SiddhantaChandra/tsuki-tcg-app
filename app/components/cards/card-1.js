@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { getRarityColor } from '../common/utils'
 
-export default function Card1({ src, title, price, rarity, condition }) {
+export default function Card1({ id, src, title, price, rarity, condition }) {
   return (
-    <div className="flex-shrink-0 w-[150px] sm:w-32 md:w-52 lg:w-52 2xl:w-48 h-full flex flex-col transition-colors duration-300 shadow-md dark:shadow-neutral-900/50 rounded-lg overflow-hidden">
+    <Link href={`/cards/${id}`} className="flex-shrink-0 w-[150px] sm:w-32 md:w-52 lg:w-52 2xl:w-48 h-full flex flex-col transition-colors duration-300 shadow-md dark:shadow-neutral-900/50 rounded-lg overflow-hidden hover:shadow-lg dark:hover:shadow-neutral-900/70 cursor-pointer">
       <div className="relative aspect-[3/4] w-full p-4 sm:p-6 bg-white dark:bg-neutral-800 transition-colors duration-300">
         <Image
           src={src}
@@ -25,11 +26,14 @@ export default function Card1({ src, title, price, rarity, condition }) {
         </div>
         <div className="flex flex-col justify-between gap-2 mt-auto">
           <span className="font-bold text-gray-900 dark:text-white transition-colors duration-300">${price}</span>
-          <button className="px-3 py-2 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors">
+          <button 
+            onClick={(e) => e.preventDefault()}
+            className="px-3 py-2 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
+          >
             Add to Cart
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   )
 } 

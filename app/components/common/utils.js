@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 export const getRarityColor = (rarity) => {
   switch(rarity) {
     case 'Secret Rare': return 'text-purple-600 bg-purple-100'
@@ -71,4 +73,38 @@ export const debounce = (func, delay) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => func.apply(this, args), delay);
   };
+}
+
+// Custom hook for body scroll lock
+export function useScrollLock(isLocked) {
+  useEffect(() => {
+    if (isLocked) {
+      // Save current scroll position
+      const scrollY = window.scrollY
+      
+      // Apply styles to prevent scrolling
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+      
+      // Prevent touch scrolling on mobile
+      const preventDefault = (e) => e.preventDefault()
+      document.addEventListener('touchmove', preventDefault, { passive: false })
+      
+      return () => {
+        // Restore scroll position and styles
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.width = ''
+        document.body.style.overflow = ''
+        
+        // Restore scroll position
+        window.scrollTo(0, scrollY)
+        
+        // Remove touch event listener
+        document.removeEventListener('touchmove', preventDefault)
+      }
+    }
+  }, [isLocked])
 } 

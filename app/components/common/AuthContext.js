@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react'
+import { useScrollLock } from './utils'
 
 const AuthContext = createContext()
 
@@ -9,6 +10,10 @@ export function AuthProvider({ children }) {
   const [isSignUpOpen, setIsSignUpOpen] = useState(false)
   const [user, setUser] = useState(null)
   const [activeTab, setActiveTab] = useState('login') // Centralized tab state
+  
+  // Apply scroll lock when any modal is open
+  const isAnyModalOpen = isSignInOpen || isSignUpOpen
+  useScrollLock(isAnyModalOpen)
 
   const openSignIn = () => {
     setIsSignInOpen(true)

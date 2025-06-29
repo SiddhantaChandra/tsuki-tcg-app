@@ -1,11 +1,42 @@
 'use client'
 
-import CardFeatured from '../../cards/card-featured'
+import { useState, useEffect } from 'react'
+import DatabaseCard from '../../cards/DatabaseCard'
 import Carousel from '../../common/Carousel'
-import { getFeaturedCards } from '../../common/card-data'
+import { getFeaturedCards } from '../../../../lib/database'
 
 export default function FeaturedSection() {
-  const featuredCards = getFeaturedCards()
+  const [featuredCards, setFeaturedCards] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadFeaturedCards() {
+      try {
+        const cards = await getFeaturedCards(12)
+        // Add type identifier for the DatabaseCard component
+        const cardsWithType = cards.map(card => ({ ...card, type: 'card' }))
+        setFeaturedCards(cardsWithType)
+      } catch (error) {
+        console.error('Error loading featured cards:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadFeaturedCards()
+  }, [])
+
+  if (loading) {
+    return (
+      <section id="featured" className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-purple-900 to-black">
+        <div className="container mx-auto xl:max-w-6xl 2xl:max-w-7xl">
+          <div className="flex items-center justify-center h-64">
+            <div className="text-white text-lg">Loading featured cards...</div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="featured" className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-900 via-purple-900 to-black">
@@ -25,15 +56,10 @@ export default function FeaturedSection() {
         
         <Carousel buttonColor="red">
           {featuredCards.map((card) => (
-            <CardFeatured 
+            <DatabaseCard 
               key={card.id} 
-              src={card.src} 
-              title={card.title} 
-              price={card.price} 
-              rarity={card.rarity} 
-              condition={card.condition}
-              description={card.description}
-              series={card.series}
+              item={card}
+              variant="featured"
             />
           ))}
         </Carousel>

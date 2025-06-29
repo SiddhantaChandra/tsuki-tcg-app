@@ -1,11 +1,42 @@
 'use client'
 
-import Card1 from '../../cards/card-1'
+import { useState, useEffect } from 'react'
+import DatabaseCard from '../../cards/DatabaseCard'
 import Carousel from '../../common/Carousel'
-import { getRecentCards } from '../../common/card-data'
+import { getRecentCards } from '../../../../lib/database'
 
 export default function RecentlyAddedSection() {
-  const recentlyAdded = getRecentCards()
+  const [recentlyAdded, setRecentlyAdded] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadRecentCards() {
+      try {
+        const cards = await getRecentCards(12)
+        // Add type identifier for the DatabaseCard component
+        const cardsWithType = cards.map(card => ({ ...card, type: 'card' }))
+        setRecentlyAdded(cardsWithType)
+      } catch (error) {
+        console.error('Error loading recent cards:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadRecentCards()
+  }, [])
+
+  if (loading) {
+    return (
+      <section id="recent" className="py-12 sm:py-20 px-4 sm:px-6 bg-white dark:bg-neutral-900 transition-colors duration-300">
+        <div className="container mx-auto xl:max-w-6xl 2xl:max-w-7xl">
+          <div className="flex items-center justify-center h-64">
+            <div className="text-gray-900 dark:text-white text-lg">Loading recent cards...</div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="recent" className="py-12 sm:py-20 px-4 sm:px-6 bg-white dark:bg-neutral-900 transition-colors duration-300">
@@ -25,7 +56,7 @@ export default function RecentlyAddedSection() {
         
         <Carousel buttonColor="green">
           {recentlyAdded.map((card) => (
-            <Card1 key={card.id} src={card.src} title={card.title} price={card.price} rarity={card.rarity} condition={card.condition} />
+            <DatabaseCard key={card.id} item={card} />
           ))}
         </Carousel>
       </div>
